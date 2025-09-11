@@ -63,10 +63,20 @@ class TestBurger:
 
         assert price == manual_price
 
-    def test_get_receipt_correct_data_return_valid_receipt_lines_count(self, mocked_burger_full):
+    def test_get_receipt_correct_data_return_valid_receipt(self, mocked_burger_full):
         """
-        Проверяет, что метод get_receipt() возвращает чек с ожидаемым количеством строк
+        Проверяет, что метод get_receipt() возвращает корректный чек
         """
-        receipt = mocked_burger_full.get_receipt()  # 2 булки, 1 ингридиент, 2 строки на price с отступом
+        # Получаем фактический тип ингредиента из фикстуры и приводим к нижнему регистру
+        ingredient_type = mocked_burger_full.ingredients[0].type.lower()
+        
+        expected_receipt = (
+            f"(==== {mocked_burger_full.bun.name} ====)\n"
+            f"= {ingredient_type} {mocked_burger_full.ingredients[0].name} =\n"
+            f"(==== {mocked_burger_full.bun.name} ====)\n"
+            f"\nPrice: {mocked_burger_full.get_price()}"
+        )
+        
+        receipt = mocked_burger_full.get_receipt()
 
-        assert len(receipt.split('\n')) == 5
+        assert receipt == expected_receipt
