@@ -1,6 +1,0 @@
-from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
-# Булочка
-BUN_CORRECT = ["baguette", 100]
-# Ингредиенты
-INGREDIENT_SAUCE_CORRECT = [INGREDIENT_TYPE_SAUCE, "hot sauce", 100]
-INGREDIENT_FILLING_CORRECT = [INGREDIENT_TYPE_FILLING, "cutlet", 100]
